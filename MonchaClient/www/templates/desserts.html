@@ -2,18 +2,16 @@
     <ion-content padding="true" class="has-header">
         <div id="desserts-container2">
             <ion-list id="desserts-list2">
-                <ion-item class="item-divider" id="desserts-list-item-divider2">Queques</ion-item>
-                <ion-item class="item-thumbnail-left" id="desserts-list-item21" ui-sref="tabsController.icecream" style="">
-                    <img src="img/rVVRFa7dQqZAbH7sF5CQ_ice_cream.jpg">
-                    <h2>Banana split</h2>
-                    <p style="white-space:normal;">Bananas organicas Precio: 9999</p>
+                <ion-item class="item-thumbnail-left" ng-repeat="dish in menu" ui-sref="menuItem({id:dish.id})">
+                    <h2>{{dish.title}}</h2>
+                    <p style="white-space:normal;">
+                        {{dish.summary}}
+                    </p>
+                    <p style="white-space:normal;">
+                        Price:{{dish.price}}
+                    </p>
                 </ion-item>
-                <ion-item class="item-divider" id="desserts-list-item-divider1">Helados</ion-item>
-                <ion-item class="item-thumbnail-left" id="desserts-list-item8" style="">
-                    <img src="img/rVVRFa7dQqZAbH7sF5CQ_ice_cream.jpg">
-                    <h2>Banana split</h2>
-                    <p style="white-space:normal;">Bananas organicas Precio: 9999</p>
-                </ion-item>
+                <ion-item class="item-divider" id="desserts-list-item-divider2">fin lista</ion-item>
             </ion-list>
         </div>
     </ion-content>
