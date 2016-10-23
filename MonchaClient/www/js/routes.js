@@ -74,24 +74,13 @@ angular.module('app.routes', ['ionicUIRouter'])
       /page1/tab2/page10
       /page1/tab3/page10
   */
-  .state('tabsController.icecreamRecipe', {
-    url: '/page10',
-    views: {
-      'tab4': {
-        templateUrl: 'templates/icecreamRecipe.html',
-        controller: 'icecreamRecipeCtrl'
-      },
-      'tab2': {
-        templateUrl: 'templates/icecreamRecipe.html',
-        controller: 'icecreamRecipeCtrl'
-      },
-      'tab3': {
-        templateUrl: 'templates/icecreamRecipe.html',
-        controller: 'icecreamRecipeCtrl'
-      }
-    }
-  })
 
+  .state('itemRecipe', {
+    url: '/page10/:id',
+    templateUrl: 'templates/itemRecipe.html',
+    controller: 'itemRecipeCtrl'
+
+  })
   /*
     The IonicUIRouter.js UI-Router Modification is being used for this route.
     To navigate to this route, do NOT use a URL. Instead use one of the following:

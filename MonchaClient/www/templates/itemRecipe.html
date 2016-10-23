@@ -1,0 +1,16 @@
+<ion-view title="Icecream Recipe" id="page10" style="">
+    <ion-content padding="true" class="has-header">
+        <ion-list >
+            <ion-item class="item-divider">
+                <h2> Ingredients</h2></ion-item>
+                <ion-item ng-repeat="ingredient in dish.ingredients">{{ingredient}}</ion-item>
+            </ion-list>
+            <ion-list  ng-repeat="step in dish.recipie" >
+                <ion-item class="item-divider">{{step.title}}</ion-item>
+                <ion-item style="">{{step.instruction}}</ion-item>
+                <ion-item style="">Estimated time: {{step.estimatedTime}}</ion-item>
+            </ion-list>
+        </ion-list>
+        <div id="icecreamRecipe-container9" class="creator-container"></div>
+    </ion-content>
+</ion-view>

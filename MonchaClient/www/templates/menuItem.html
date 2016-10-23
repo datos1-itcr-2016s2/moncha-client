@@ -11,7 +11,7 @@
                 <p>Price:{{dish.price}}</p>
             </div>
         </div>
-        <ion-list id="desserts-list2">
+        <ion-list>
             <ion-item class="item-divider">
                 <h2> Ingredients</h2>
             </ion-item>
@@ -21,7 +21,7 @@
             </ion-item>
         </ion-list>
         <divclass="button-bar">
-        <a ui-sref="tabsController.icecreamRecipe" id="icecream-button1222" class="button button-positive  button-block">Ver receta</a>
+        <a ui-sref="itemRecipe({id:dish.id})" class="button button-positive  button-block">Ver receta</a>
         <button  class="button button-positive  button-block">Ordenar</button>
     </div>
 </ion-content>

@@ -1,6 +1,6 @@
 <ion-view title="Icecream Recipe" id="page10" style="">
     <ion-content padding="true" class="has-header">
-        <ion-list id="icecreamRecipe-list15">
+        <ion-list >
             <div class="item item-body" id="icecreamRecipe-list-item-container2" style="">
                 <ion-list id="icecreamRecipe-list17">
                     <ion-item class="item-divider" id="icecreamRecipe-list-item-divider10">Ingredientes</ion-item>
@@ -8,18 +8,11 @@
                     <ion-item id="icecreamRecipe-list-item40" style="">Leche</ion-item>
                 </ion-list>
             </div>
-            <div class="item item-body" id="icecreamRecipe-list-item-container6" style="">
-                <ion-list id="icecreamRecipe-list19">
-                    <ion-item class="item-divider" id="icecreamRecipe-list-item-divider13">Paso 1 Hornear</ion-item>
-                    <ion-item id="icecreamRecipe-list-item38" style="">Precalentar</ion-item>
-                    <ion-item id="icecreamRecipe-list-item39" style="">Tiempo: 20horas</ion-item>
-                </ion-list>
-            </div>
-            <div class="item item-body" id="icecreamRecipe-list-item-container3" style="">
-                <ion-list id="icecreamRecipe-list18">
-                    <ion-item class="item-divider" id="icecreamRecipe-list-item-divider12">Paso 2 Batir</ion-item>
-                    <ion-item id="icecreamRecipe-list-item36" style="">Usar licuadora</ion-item>
-                    <ion-item id="icecreamRecipe-list-item37" style="">Tiempo: 2horas</ion-item>
+            <div class="item item-body"style="">
+                <ion-list  ng-repeat="steps in dish.recipie" >
+                    <ion-item class="item-divider">{{step.title}}</ion-item>
+                    <ion-item style="">step.instruction</ion-item>
+                    <ion-item style="">Estimated time: {{step.estimatedTime}}</ion-item>
                 </ion-list>
             </div>
         </ion-list>
