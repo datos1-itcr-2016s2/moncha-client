@@ -72,6 +72,14 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
+  $scope.user = {};
+    $scope.submitForm = function(user) {
+    if (user.firstName && user.lastName && user.comments) {
+      console.log("Submitting Form", user);
+    } else {
+      alert("Please fill out some information for the user");
+    }
+  };
 
 
 }])
