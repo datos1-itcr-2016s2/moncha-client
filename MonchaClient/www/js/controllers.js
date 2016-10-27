@@ -68,14 +68,19 @@ function ($scope, $stateParams) {
 
 }])
 
-.controller('loginCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('loginCtrl', ['$scope', '$stateParams','$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+function ($scope, $stateParams, $state) {
   $scope.user = {};
     $scope.submitForm = function(user) {
-    if (user.firstName && user.lastName && user.comments) {
+    if (user.username && user.password && user.tableCode) {
       console.log("Submitting Form", user);
+      //console.log($state.path);
+    //$state.go('/page12')
+     //$state.go('tabsController.desserts');
+     
+     $state.go('tabsController.desserts_tab4');
     } else {
       alert("Please fill out some information for the user");
     }
