@@ -160,6 +160,11 @@ angular.module('app.routes', ['ionicUIRouter'])
     templateUrl: 'templates/dishStatus.html',
     controller: 'dishStatusCtrl'
   })
+  .state('user', {
+    url: '/page20',
+    templateUrl: 'templates/user.html',
+    controller: 'userCtrl'
+  })
 
 $urlRouterProvider.otherwise('/page13')
 

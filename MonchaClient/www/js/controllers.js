@@ -68,10 +68,10 @@ function ($scope, $stateParams) {
 
 }])
 
-.controller('loginCtrl', ['$scope', '$stateParams','$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('loginCtrl', ['$scope', '$stateParams','$state', 'userData', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $state) {
+function ($scope, $stateParams, $state, userData) {
   $scope.user = {};
     $scope.submitForm = function(user) {
     if (user.username && user.password && user.tableCode) {
@@ -79,7 +79,7 @@ function ($scope, $stateParams, $state) {
       //console.log($state.path);
     //$state.go('/page12')
      //$state.go('tabsController.desserts');
-     
+     userData.updateUser(user);
      $state.go('tabsController.desserts_tab4');
     } else {
       alert("Please fill out some information for the user");
@@ -133,6 +133,14 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
+
+
+}])
+.controller('userCtrl', ['$scope', '$stateParams','userData', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams, userData) {
+   $scope.user=userData.getUser();
 
 
 }])
