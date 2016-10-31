@@ -4,6 +4,9 @@
   "proxies": [{
       "path": "/api",
       "proxyUrl": "http://moncha.herokuapp.com/api/"
-    }
+    },{
+    "path": "/apiNR/",
+    "proxyUrl": "http://localhost:32768/"
+  }
   ]
 }

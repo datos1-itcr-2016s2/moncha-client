@@ -76,7 +76,9 @@ angular.module('app.services', [])
         this.URL = "http://moncha.herokuapp.com/api/dishes/fake";
 
       } else {
-        this.URL = "http://192.168.0.105:8100/api/dishes/fake";
+        //this.URL = "http://192.168.0.105:8100/api/dishes/fake";
+        //this.URL = "http://localhost:8100/api/dishes/fake";
+        this.URL = "http://localhost:8100/apiNR/menu/";
       }
       this.defined=true;
     },
@@ -187,8 +189,130 @@ instruction: "Poner en aguar hiviendo la pasta"
 title: "Mezclar",
 estimatedTime: 5,
 instruction: "Mezclar la pasta y vegetales en una taza"
-}]}
+}]},
 
+
+
+{
+id: 4,
+title: "Picadillo",
+summary:" Picadillo tradicional",
+price:100,
+totalTime: 30,
+ingredients: [
+"1",
+"2",
+"3"
+],
+recipie: [{
+title: "Batir",
+estimatedTime: 10,
+instruction: " Batir lentamente "
+}, {
+title: "Picar vegetales",
+estimatedTime: 3,
+instruction: "Picar finamente el tomate"
+}, {
+title: "Hornear",
+estimatedTime: 20,
+instruction: "Meter al hornor precalentado a 300 grados, por 10 minutos"
+},{
+title: "Hornear2",
+estimatedTime: 20,
+instruction: "Meter al hornor precalentado a 300 grados, por 10 minutos"
+},{
+title: "Hornear3",
+estimatedTime: 20,
+instruction: "Meter al hornor precalentado a 300 grados, por 10 minutos"
+},{
+title: "Hornear4",
+estimatedTime: 20,
+instruction: "Meter al hornor precalentado a 300 grados, por 10 minutos"
+},
+]
+},
+
+
+
+{
+id: 5,
+title: "empanadas",
+summary:" Empanadas de papa",
+price:100,
+totalTime: 30,
+ingredients: [
+"1",
+"2",
+"3"
+],
+recipie: [{
+title: "Batir",
+estimatedTime: 10,
+instruction: " Batir lentamente "
+}, {
+title: "Picar vegetales",
+estimatedTime: 3,
+instruction: "Picar finamente el tomate"
+}, {
+title: "Hornear",
+estimatedTime: 20,
+instruction: "Meter al hornor precalentado a 300 grados, por 10 minutos"
+},{
+title: "Hornear2",
+estimatedTime: 20,
+instruction: "Meter al hornor precalentado a 300 grados, por 10 minutos"
+},{
+title: "Hornear3",
+estimatedTime: 20,
+instruction: "Meter al hornor precalentado a 300 grados, por 10 minutos"
+},{
+title: "Hornear4",
+estimatedTime: 20,
+instruction: "Meter al hornor precalentado a 300 grados, por 10 minutos"
+},
+]
+},
+
+
+
+{
+id: 5,
+title: "Carne Asada",
+summary:"Vegana al vapor",
+price:100,
+totalTime: 30,
+ingredients: [
+"1",
+"2",
+"3"
+],
+recipie: [{
+title: "Batir",
+estimatedTime: 10,
+instruction: " Batir lentamente "
+}, {
+title: "Picar vegetales",
+estimatedTime: 3,
+instruction: "Picar finamente el tomate"
+}, {
+title: "Hornear",
+estimatedTime: 20,
+instruction: "Meter al hornor precalentado a 300 grados, por 10 minutos"
+},{
+title: "Hornear2",
+estimatedTime: 20,
+instruction: "Meter al hornor precalentado a 300 grados, por 10 minutos"
+},{
+title: "Hornear3",
+estimatedTime: 20,
+instruction: "Meter al hornor precalentado a 300 grados, por 10 minutos"
+},{
+title: "Hornear4",
+estimatedTime: 20,
+instruction: "Meter al hornor precalentado a 300 grados, por 10 minutos"
+},
+]
+},
 ];
 
 deferred.resolve(menu);
