@@ -21,8 +21,10 @@
             </ion-item>
         </ion-list>
         <divclass="button-bar">
-        <a ui-sref="itemRecipe({id:dish.id})" class="button button-positive  button-block">Ver receta</a>
-        <button  class="button button-positive  button-block">Ordenar</button>
+        <a ui-sref="itemRecipe({id:dish.id})" class="button button-positive  button-block">View recipe</a>
+        <button  class="button button-positive  button-block" ng-click="openModal()">Order</button>
+
+
     </div>
 </ion-content>
 </ion-view>
