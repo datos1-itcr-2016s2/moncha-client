@@ -2,10 +2,16 @@ angular.module('app.services', [])
 
 .factory('MenuService', ['$http', '$q', 'ServerAPI', function($http, $q, ServerAPI) {
   return {
+    menu:[],
     getMenu: function() {
+      if(this.menu.length == 0){
+        this.menu = this.updateMenu();
+      }
+      return this.menu;
+
+    },
+    updateMenu: function() {
       var deferred = $q.defer();
-      //http://moncha.herokuapp.com/api/dishes/fake
-      //$http.get('http://192.168.0.105:8100/api/dishes/fake').then(function(res) {
       console.log(ServerAPI.getURL);
       $http.get(ServerAPI.getURL()).then(function(res) {
         //console.dir(res.data);
@@ -14,7 +20,6 @@ angular.module('app.services', [])
 
       return deferred.promise;
     },
-
     getDish: function(id) {
       var deferred = $q.defer();
       var deferred = $q.defer();
@@ -77,8 +82,8 @@ angular.module('app.services', [])
 
       } else {
         //this.URL = "http://192.168.0.105:8100/api/dishes/fake";
-        //this.URL = "http://localhost:8100/api/dishes/fake";
-        this.URL = "http://localhost:8100/apiNR/menu/";
+        this.URL = "http://localhost:8100/api/dishes/fake";
+        //this.URL = "http://localhost:8100/apiNR/menu/";
       }
       this.defined=true;
     },
