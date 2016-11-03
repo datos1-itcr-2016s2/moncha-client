@@ -1,5 +1,5 @@
 <ion-view  style="">
-    <ion-nav-title>{{dish.title}}</ion-nav-title>
+    <ion-nav-title>{{dish.name}}</ion-nav-title>
 
     <ion-content padding="true" class="has-header">
         <div >
@@ -16,8 +16,8 @@
                 <h2> Ingredients</h2>
             </ion-item>
 
-            <ion-item ng-repeat="ingredient in dish.ingredients">
-                {{ingredient}}
+            <ion-item ng-repeat="ingredient in dish.ingredientsList">
+                {{ingredient.name}}
             </ion-item>
         </ion-list>
         <divclass="button-bar">

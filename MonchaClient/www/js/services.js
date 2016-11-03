@@ -13,7 +13,7 @@ angular.module('app.services', [])
     updateMenu: function() {
       var deferred = $q.defer();
       console.log(ServerAPI.getURL);
-      $http.get(ServerAPI.getURL()).then(function(res) {
+      $http.get(ServerAPI.getURL()+"/dishes").then(function(res) {
         //console.dir(res.data);
         deferred.resolve(res.data);
       });
@@ -22,11 +22,9 @@ angular.module('app.services', [])
     },
     getDish: function(id) {
       var deferred = $q.defer();
-      var deferred = $q.defer();
-      //$http.get('http://192.168.0.105:8100/api/dishes/fake').then(function(res) {
-      $http.get(ServerAPI.getURL()).then(function(res) {
+      $http.get(ServerAPI.getURL()+"/dishes/"+id).then(function(res) {
         //console.dir(res.data);
-        deferred.resolve(res.data[id - 1]);
+        deferred.resolve(res.data);
       });
 
       return deferred.promise;
@@ -76,14 +74,14 @@ angular.module('app.services', [])
     defined: false,
     checkPlatform: function(tableCode) {
       if (ionic.Platform.isIOS()) {
-        this.URL = "http://moncha.herokuapp.com/api/dishes/fake";
+        this.URL = "http://moncha.herokuapp.com/api";
       } else if (ionic.Platform.isAndroid()) {
-        this.URL = "http://moncha.herokuapp.com/api/dishes/fake";
+        this.URL = "http://moncha.herokuapp.com/api";
 
       } else {
-        //this.URL = "http://192.168.0.105:8100/api/dishes/fake";
-        this.URL = "http://localhost:8100/api/dishes/fake";
-        //this.URL = "http://localhost:8100/apiNR/menu/";
+        //this.URL = "http://192.168.0.105:8100/api";
+        this.URL = "http://localhost:8100/api";
+        //this.URL = "http://localhost:8100/apiNR";
       }
       this.defined=true;
     },
