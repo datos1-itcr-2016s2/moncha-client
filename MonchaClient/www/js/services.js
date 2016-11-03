@@ -4,13 +4,6 @@ angular.module('app.services', [])
   return {
     menu:[],
     getMenu: function() {
-      if(this.menu.length == 0){
-        this.menu = this.updateMenu();
-      }
-      return this.menu;
-
-    },
-    updateMenu: function() {
       var deferred = $q.defer();
       console.log(ServerAPI.getURL);
       $http.get(ServerAPI.getURL()+"/dishes").then(function(res) {
