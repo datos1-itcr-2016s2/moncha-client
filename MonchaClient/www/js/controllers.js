@@ -106,18 +106,33 @@ function ($scope, $stateParams) {
 function ($scope, $stateParams, $state, userData, $ionicSideMenuDelegate) {
   $ionicSideMenuDelegate.canDragContent(false)
   $scope.user = {};
-  $scope.submitForm = function(user) {
-    if (user.username && user.tableCode) {
-      console.log("Submitting Form", user);
-      //console.log($state.path);
-      //$state.go('/page12')
-      //$state.go('tabsController.desserts');
-      userData.updateUser(user);
+  $scope.tokenReady = function(){
+    var result = false;
+    if($scope.token){
+      userData.setToken($scope.token);
+      result = true;
       $state.go('tabsController.desserts_tab4');
-    } else {
-      alert("Please fill out some information for the user");
     }
+    return result
   };
+  $scope.login=function(){
+    if($scope.user.name && $scope.user.table)
+{    this.getToken($scope.user);
+}
+else{
+  alert("Please fill all the inputs")
+}
+ }
+  $scope.getToken= function(user){
+    userData.updateUser(user.name, user.table);
+    userData.login(this.user).then(function(res){
+      $scope.token = res;
+      //console.log("sadsa");
+    //  console.log("token",$scope.token);
+      //alert("desde login   ",$scope.token);
+    });
+
+  }
 
 
 }])
