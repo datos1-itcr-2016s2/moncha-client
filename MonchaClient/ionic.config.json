@@ -1,12 +1,14 @@
 {
   "name": "MonchaClient",
-  "app_id": "",
-  "proxies": [{
+  "app_id": "650434f0",
+  "proxies": [
+    {
       "path": "/api",
       "proxyUrl": "http://moncha.herokuapp.com/api"
-    },{
-    "path": "/apiNR/",
-    "proxyUrl": "http://localhost:32768/"
-  }
+    },
+    {
+      "path": "/apiNR/",
+      "proxyUrl": "http://localhost:32768/"
+    }
   ]
 }

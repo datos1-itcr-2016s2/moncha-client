@@ -23,5 +23,14 @@ angular.module('app', ['ionic','lectorctrl.scannerctrl', 'app.controllers', 'app
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    var push = new Ionic.Push({
+      "debug": true
+    });
+
+    push.register(function(token){
+      console.console.log("Device token ", token.token);
+    });
+
   });
 })
