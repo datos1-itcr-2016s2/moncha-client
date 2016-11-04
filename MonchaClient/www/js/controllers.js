@@ -100,13 +100,14 @@ function ($scope, $stateParams) {
 
 }])
 
-.controller('loginCtrl', ['$scope', '$stateParams','$state', 'userData', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('loginCtrl', ['$scope', '$stateParams','$state', 'userData', '$ionicSideMenuDelegate', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $state, userData) {
+function ($scope, $stateParams, $state, userData, $ionicSideMenuDelegate) {
+  $ionicSideMenuDelegate.canDragContent(false)
   $scope.user = {};
   $scope.submitForm = function(user) {
-    if (user.username && user.password && user.tableCode) {
+    if (user.username && user.tableCode) {
       console.log("Submitting Form", user);
       //console.log($state.path);
       //$state.go('/page12')
