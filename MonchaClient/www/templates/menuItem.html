@@ -1,17 +1,17 @@
 <ion-view  style="">
-    <ion-nav-title>{{dish.name}}</ion-nav-title>
+    <ion-nav-title>{{order.dish.name}}</ion-nav-title>
 
     <ion-content padding="true" class="has-header">
         <div >
 
             <div  style="color:#000000;">
-                <p>{{dish.summary}}</p>
+                <p>{{order.dish.summary}}</p>
             </div>
             <div  style="color:#000000;">
-                <p>Price:{{dish.price}}</p>
+                <p>Price:{{order.dish.price}}</p>
             </div>
             <div  style="color:#000000;">
-                <p>Estimated time:{{dish.prepTime}}</p>
+                <p>Estimated time:{{order.dish.prepTime}}</p>
             </div>
         </div>
         <ion-list>
@@ -19,7 +19,7 @@
                 <h2> Ingredients</h2>
             </ion-item>
 
-            <ion-item ng-repeat="ingredient in dish.ingredientsList">
+            <ion-item ng-repeat="ingredient in order.dish.ingredientsList">
                 {{ingredient.name}}
             </ion-item>
         </ion-list>

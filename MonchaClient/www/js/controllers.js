@@ -28,10 +28,11 @@ function ($scope, $stateParams) {
 
 }])
 
-.controller('menuItemCtrl', ['$scope', '$stateParams', 'MenuService','$ionicModal','$state', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('menuItemCtrl', ['$scope', '$stateParams', 'MenuService','$ionicModal','$state', 'orderService',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, MenuService,$ionicModal,$state) {
+function ($scope, $stateParams, MenuService,$ionicModal,$state, orderService) {
+  $scope.order={};
   $scope.dish={};
   MenuService.getDish($stateParams.id).then(function(res){
     $scope.dish =res;
@@ -39,8 +40,8 @@ function ($scope, $stateParams, MenuService,$ionicModal,$state) {
   //modal controller
   $scope.getTotal=function(){
     total=0;
-    if($scope.dish.quantity!=undefined){
-      total= $scope.dish.price * $scope.dish.quantity;
+    if($scope.order.quantity!=undefined){
+      total= $scope.dish.price * $scope.order.quantity;
     }
     return total;
   }
@@ -54,14 +55,20 @@ function ($scope, $stateParams, MenuService,$ionicModal,$state) {
     $scope.modal.show();
   };
   $scope.closeModal = function() {
-    $scope.dish.quantity=0;
+    $scope.order.quantity=0;
     $scope.modal.hide();
   };
   $scope.confirmOrder=function(){
     if(this.getTotal()==0){
+
       alert("Order at least one dish.");
     }
     else{
+      $scope.order.dishId = $scope.dish.id;
+      alert(JSON.stringify($scope.order));
+      orderService.addSuborder($scope.order);
+      console.log( JSON.stringify(orderService.getOrder()));
+      $scope.order={};
       alert("the dish was added to the order.")
       this.closeModal();
       $state.go('tabsController.desserts_tab4');
@@ -106,18 +113,33 @@ function ($scope, $stateParams) {
 function ($scope, $stateParams, $state, userData, $ionicSideMenuDelegate) {
   $ionicSideMenuDelegate.canDragContent(false)
   $scope.user = {};
-  $scope.submitForm = function(user) {
-    if (user.username && user.tableCode) {
-      console.log("Submitting Form", user);
-      //console.log($state.path);
-      //$state.go('/page12')
-      //$state.go('tabsController.desserts');
-      userData.updateUser(user);
+  $scope.tokenReady = function(){
+    var result = false;
+    if($scope.token){
+      userData.setToken($scope.token);
+      result = true;
       $state.go('tabsController.desserts_tab4');
-    } else {
-      alert("Please fill out some information for the user");
     }
+    return result
   };
+  $scope.login=function(){
+    if($scope.user.name && $scope.user.table)
+    {    this.getToken($scope.user);
+    }
+    else{
+      alert("Please fill all the inputs")
+    }
+  }
+  $scope.getToken= function(user){
+    userData.updateUser(user.name, user.table);
+    userData.login(this.user).then(function(res){
+      $scope.token = res;
+      //console.log("sadsa");
+      //  console.log("token",$scope.token);
+      //alert("desde login   ",$scope.token);
+    });
+
+  }
 
 
 }])

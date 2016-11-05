@@ -1,19 +1,24 @@
 <ion-modal-view>
   <ion-header-bar>
-    <h1 class="title">My Modal title</h1>
+    <h1 class="title">Place {{order.dish.name}} order:</h1>
   </ion-header-bar>
   <ion-content>
-    {{dish.title}}
+    {{order.dish.title}}
     <label class="item item-input">
       <span class="input-label">Quantity</span>
-      <input type="number" ng-model="dish.quantity">
-      </label>
-      <label>
+      <input type="number" ng-model="order.quantity">
+    </label>
+    <label>
       <span class="">Total:{{getTotal()}}</span>
     </label>
+    <label class="item item-input">
+      <span class="input-label">Comment:</span>
+      <textarea ng-model="order.comment"></textarea>
+    </label>
+
     <div class="button-bar">
-    <a class="button button-assertive" ng-click="closeModal()">Cancel</a>
-    <a class="button button-positive" ng-click="confirmOrder()">Confirm</a>
-  </div>
+      <a class="button button-assertive" ng-click="closeModal()">Cancel</a>
+      <a class="button button-positive" ng-click="confirmOrder()">Confirm</a>
+    </div>
   </ion-content>
 </ion-modal-view>

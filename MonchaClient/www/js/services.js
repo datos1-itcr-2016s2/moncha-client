@@ -1,6 +1,6 @@
 angular.module('app.services', [])
 
-.factory('MenuService', ['$http', '$q', 'ServerAPI', function($http, $q, ServerAPI) {
+.service('MenuService', ['$http', '$q', 'ServerAPI', function($http, $q, ServerAPI) {
   return {
     menu:[],
     getMenu: function() {
@@ -25,42 +25,86 @@ angular.module('app.services', [])
   };
 
 }])
-.service('userData', [function() {
+.service('userData', ['$http', 'ServerAPI', '$q',function($http, ServerAPI, $q) {
   return {
     user: {},
     getUser: function() {
       return this.user;
     },
-    updateUser: function(user) {
-      this.user = user;
+    updateUser: function(username, table, type) {
+      this.user.name= username;
+      this.user.table= table;
+      this.user.type= type;
+      //var userJson = JSON.stringify(this.user);
+      //alert(userJson);
     },
-    setUsername: function(username) {
-      this.user.username = username;
+    setName: function(name) {
+      this.user.name = name;
     },
-    getUsername: function() {
-      return this.user.username;
-    },
-    setPassword: function(password) {
-      this.user.password = password;
-    },
-    getPassword: function() {
-      return this.user.password;
+    getName: function() {
+      return this.user.name;
     },
     setToken: function(token) {
-      this.user.username = token;
+      this.user.token = token;
     },
     getToken: function() {
       return this.user.token;
     },
-    setTableCode: function(tableCode) {
-      this.user.username = tableCode;
+    setTable: function(table) {
+      this.user.tableId = table;
     },
-    getTableCode: function() {
-      return this.user.tableCode;
+    getTable: function() {
+      return this.user.tableId;
+    },
+    setType: function(type) {
+      this.user.type = type;
+    },
+    getType: function() {
+      return this.user.type;
+    },
+    login: function(user) {
+      var deferred = $q.defer();
+      var userJson = JSON.stringify(user);
+      $http.post(ServerAPI.getURL()+"/auth/client/", userJson)
+      .then(function(res) {
+        //console.log("JSON RES   ",JSON.stringify(res));
+        deferred.resolve(res.data);
+      });
+      return deferred.promise;
     }
-  }
+
+  };
 }])
 
+.service('orderService', ['$http', 'ServerAPI', 'userData', '$q',function($http, ServerAPI, $q) {
+  return {
+    order:[
+      {
+        "dishId": 1,
+        "quantity": 7,
+        "comment": "Con extra queso"
+      },
+
+      {
+        "dishId": 2,
+        "quantity": 3,
+        "comment": "Con extra NATILLA"
+      }
+    ],
+    addSuborder: function(suborder){
+      this.order.push(suborder);
+
+    },
+    postOrder: function(){
+
+    },
+    getOrder: function(){
+      return this.order;
+
+    },
+
+  };
+}])
 .service('ServerAPI', [function() {
   return {
     URL: "",
