@@ -164,6 +164,13 @@ $scope.orders=[];
 orderService.getOrders(userData.user.token).then(function(res){
   $scope.orders =res;
 })
+$scope.getIcon=function(status){
+  result="icon ion-clock";
+  if(status==true){
+    result="icon ion-checkmark";
+  }
+  return result;
+}
 
 }])
 
