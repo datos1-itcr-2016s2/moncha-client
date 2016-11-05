@@ -162,7 +162,12 @@ function ($scope, $stateParams, $state, userData, $ionicSideMenuDelegate) {
 function ($scope, $stateParams, userData, orderService) {
 $scope.orders=[];
 orderService.getOrders(userData.user.token).then(function(res){
-  $scope.orders =res;
+  var newOrders = res;
+  for (var i = 0; i < newOrders.length; i++) {
+    if(newOrders[i].completed == false){
+      $scope.orders.push(newOrders[i])
+    }
+  }
 })
 $scope.getIcon=function(status){
   result="icon ion-clock";
