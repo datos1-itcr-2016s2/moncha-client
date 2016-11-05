@@ -137,7 +137,7 @@ function ($scope, $stateParams, $state, userData, $ionicSideMenuDelegate) {
     return result
   };
   $scope.login=function(){
-    if($scope.user.name && $scope.user.table)
+    if($scope.user.name && $scope.user.table && $scope.user.type)
     {    this.getToken($scope.user);
     }
     else{
@@ -145,7 +145,7 @@ function ($scope, $stateParams, $state, userData, $ionicSideMenuDelegate) {
     }
   }
   $scope.getToken= function(user){
-    userData.updateUser(user.name, user.table);
+    userData.updateUser(user.name, user.table, user.type);
     userData.login(this.user).then(function(res){
       $scope.token = res;
       //console.log("sadsa");
@@ -154,16 +154,23 @@ function ($scope, $stateParams, $state, userData, $ionicSideMenuDelegate) {
     });
 
   }
-  $scope.loginlol= function(){
-    $state.go('tabsController.desserts_tab4');
-  };
 }])
 
-.controller('orderStatusCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('orderStatusCtrl', ['$scope', '$stateParams','userData', 'orderService', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-
+function ($scope, $stateParams, userData, orderService) {
+$scope.orders=[];
+orderService.getOrders(userData.user.token).then(function(res){
+  $scope.orders =res;
+})
+$scope.getIcon=function(status){
+  result="icon ion-clock";
+  if(status==true){
+    result="icon ion-checkmark";
+  }
+  return result;
+}
 
 }])
 

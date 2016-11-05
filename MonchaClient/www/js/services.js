@@ -65,6 +65,7 @@ angular.module('app.services', [])
     login: function(user) {
       var deferred = $q.defer();
       var userJson = JSON.stringify(user);
+      console.log("USERJSON", userJson);
       $http.post(ServerAPI.getURL()+"/auth/client/", userJson)
       .then(function(res) {
         //console.log("JSON RES   ",JSON.stringify(res));
@@ -76,30 +77,38 @@ angular.module('app.services', [])
   };
 }])
 
-.service('orderService', ['$http', 'ServerAPI', 'userData', '$q',function($http, ServerAPI, $q) {
+.service('orderService', ['$http','$q', 'ServerAPI', function($http, $q, ServerAPI) {
   return {
-    order:[
-      {
-        "dishId": 1,
-        "quantity": 7,
-        "comment": "Con extra queso"
-      },
-
-      {
-        "dishId": 2,
-        "quantity": 3,
-        "comment": "Con extra NATILLA"
-      }
+    orders:[
     ],
     addSuborder: function(suborder){
       this.order.push(suborder);
 
     },
-    postOrder: function(){
 
+    getOrders: function(token) {
+      console.log("TOKEN", token);
+      var bearerToken = "Bearer "+ token;
+      console.log("Bearer", bearerToken);
+      var config = {headers:  {
+        'Authorization': bearerToken
+      }};
+      var deferred = $q.defer();
+      $http.get(ServerAPI.getURL()+"/orders",config).then(function(res) {
+        //console.dir(res.data);
+        deferred.resolve(res.data);
+      });
+      return deferred.promise;
     },
-    getOrder: function(){
-      return this.order;
+    postOrder: function(order, user){
+      var newOrder=JSON.stringify([user.order]);
+      var bearerToken = "Bearer "+ user.token;
+      var config = {headers:  {
+        'Authorization': bearerToken
+      }};
+      $http.post(ServerAPI.getURL()+"/orders", newOrder, config).success(function(responseData) {
+        console.log(JSON.stringify(responseData));
+      });
 
     },
 
