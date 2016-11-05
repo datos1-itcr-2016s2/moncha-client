@@ -101,7 +101,7 @@ angular.module('app.services', [])
       return deferred.promise;
     },
     postOrder: function(order, user){
-      var newOrder=JSON.stringify([user.order]);
+      var newOrder=JSON.stringify([order]);
       var bearerToken = "Bearer "+ user.token;
       var config = {headers:  {
         'Authorization': bearerToken

@@ -42,10 +42,10 @@ function ($scope, $stateParams) {
 
 }])
 
-.controller('menuItemCtrl', ['$scope', '$stateParams', 'MenuService','$ionicModal','$state', 'orderService',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('menuItemCtrl', ['$scope', '$stateParams', 'MenuService','$ionicModal','$state', 'orderService', 'userData',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, MenuService,$ionicModal,$state, orderService) {
+function ($scope, $stateParams, MenuService,$ionicModal,$state, orderService, userData) {
   $scope.order={};
   $scope.dish={};
   MenuService.getDish($stateParams.id).then(function(res){
@@ -80,8 +80,9 @@ function ($scope, $stateParams, MenuService,$ionicModal,$state, orderService) {
     else{
       $scope.order.dishId = $scope.dish.id;
       alert(JSON.stringify($scope.order));
-      orderService.addSuborder($scope.order);
-      console.log( JSON.stringify(orderService.getOrder()));
+      alert(userData.user.name)
+      orderService.postOrder($scope.order, userData.user);
+      //console.log( JSON.stringify(orderService.getOrder()));
       $scope.order={};
       alert("the dish was added to the order.")
       this.closeModal();
