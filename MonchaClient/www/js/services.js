@@ -31,9 +31,10 @@ angular.module('app.services', [])
     getUser: function() {
       return this.user;
     },
-    updateUser: function(username, table) {
+    updateUser: function(username, table, type) {
       this.user.name= username;
       this.user.table= table;
+      this.user.type= type;
       //var userJson = JSON.stringify(this.user);
       //alert(userJson);
     },
@@ -55,6 +56,12 @@ angular.module('app.services', [])
     getTable: function() {
       return this.user.tableId;
     },
+    setType: function(type) {
+      this.user.type = type;
+    },
+    getType: function() {
+      return this.user.type;
+    },
     login: function(user) {
       var deferred = $q.defer();
       var userJson = JSON.stringify(user);
@@ -69,6 +76,35 @@ angular.module('app.services', [])
   };
 }])
 
+.service('orderService', ['$http', 'ServerAPI', 'userData', '$q',function($http, ServerAPI, $q) {
+  return {
+    order:[
+      {
+        "dishId": 1,
+        "quantity": 7,
+        "comment": "Con extra queso"
+      },
+
+      {
+        "dishId": 2,
+        "quantity": 3,
+        "comment": "Con extra NATILLA"
+      }
+    ],
+    addSuborder: function(suborder){
+      this.order.push(suborder);
+
+    },
+    postOrder: function(){
+
+    },
+    getOrder: function(){
+      return this.order;
+
+    },
+
+  };
+}])
 .service('ServerAPI', [function() {
   return {
     URL: "",

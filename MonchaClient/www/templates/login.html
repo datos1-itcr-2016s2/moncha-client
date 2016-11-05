@@ -11,6 +11,14 @@
          <span class="input-label">Table</span>
          <input type="number" ng-model="user.table">
       </label>
+      <label class="item item-select" >
+         <span class="input-label">Select user type:</span>
+         <select ng-model="user.type">
+            <option>Gold</option>
+            <option>Platinum</option>
+            <option>Bronze</option>
+     </select>
+      </label>
       <label class="item item-input">
          <span class="input-label">Token ready:  {{tokenReady()}}</span>
       </label>
