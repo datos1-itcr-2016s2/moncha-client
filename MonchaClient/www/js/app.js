@@ -24,13 +24,13 @@ angular.module('app', ['ionic','lectorctrl.scannerctrl', 'app.controllers', 'app
       StatusBar.styleDefault();
     }
 
-    var push = new Ionic.Push({
+  /*  var push = new Ionic.Push({
       "debug": true
     });
 
     push.register(function(token){
       console.console.log("Device token ", token.token);
-    });
+    });*/
 
   });
 })

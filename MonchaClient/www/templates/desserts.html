@@ -1,7 +1,21 @@
 <ion-view title="Desserts" id="page2" style="">
-    <ion-content padding="true" class="has-header">
+
+<ion-content padding="true" class="has-header">
+
+  <label class="item item-input">
+
+    <input type="text" ng-model="word">
+<pre> </pre>
+  </label>
+  <pre> </pre>
+  <button ng-click="record()" class="button button-positive ion-android-microphone">
+     Voice    </button>
+  <button ng-click="" class="button button-positive ion-android-search">
+    Search  </button>
+  <pre> </pre>
         <div id="desserts-container2">
             <ion-list id="desserts-list2">
+
                 <ion-item class="item-thumbnail-left" ng-repeat="dish in menu" ui-sref="menuItem({id:dish.id})">
                     <h2>{{dish.name}}</h2>
                     <p style="white-space:normal;">
@@ -15,6 +29,7 @@
                     </p>
                 </ion-item>
                 <ion-item class="item-divider" id="desserts-list-item-divider2">fin lista</ion-item>
+
             </ion-list>
         </div>
     </ion-content>

@@ -4,11 +4,25 @@ angular.module('app.controllers', ['ionic','ngCordova'])
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams, MenuService) {
+   $scope.recognizedText = '';
+   $scope.word="*Food Name*"
   $scope.menu=[];
   MenuService.getMenu().then(function(res){
     $scope.menu=res;
   });
 
+  $scope.record = function() {
+   var recognition = new SpeechRecognition();
+   recognition.onresult = function(event) {
+       if (event.results.length > 0) {
+           $scope.recognizedText = event.results[0][0].transcript;
+           $scope.$apply($scope.word=$scope.recognizedText);
+
+
+       }
+   };
+   recognition.start();
+ };
 
 }])
 
@@ -140,8 +154,9 @@ function ($scope, $stateParams, $state, userData, $ionicSideMenuDelegate) {
     });
 
   }
-
-
+  $scope.loginlol= function(){
+    $state.go('tabsController.desserts_tab4');
+  };
 }])
 
 .controller('orderStatusCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
