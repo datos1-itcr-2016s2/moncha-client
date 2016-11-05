@@ -1,6 +1,14 @@
 <ion-view title="Order status" id="page14" style="">
     <ion-content padding="true" class="has-header">
         <div id="orderStatus-container14">
+                <ion-list>
+                  <ion-item ng-repeat="order in orders">
+                      {{order.id}}
+                  </ion-item>
+                </ion-list>
+
+
+
             <ion-list id="orderStatus-list25">
                 <ion-item class="item-icon-left" id="orderStatus-list-item52" ui-sref="dishStatus" style="">
                     <i class="icon ion-checkmark"></i>PIzza
